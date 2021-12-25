@@ -1,0 +1,19 @@
+--- 
+- name: asnible with jenkins
+  hosts: dev
+  become: true
+  tasks:
+    - name: installing httpd on developer server
+      yum: 
+       name: httpd
+       state: present
+    - name: starting httpd server on developeer system
+      service:
+        name: httpd
+        state: started
+        enabled: true
+    - name: copying index file /var/www/html/
+      copy:
+        src: index.html
+        dest: /var/www/html/
+...          
